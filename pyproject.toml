@@ -1,0 +1,23 @@
+[project]
+name = "lapses_ai"
+version = "0.1.0"
+description = "lapses_ai using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "crewai[tools]>=0.108.0,<1.0.0"
+]
+
+[project.scripts]
+lapses_ai = "lapses_ai.main:run"
+run_crew = "lapses_ai.main:run"
+train = "lapses_ai.main:train"
+replay = "lapses_ai.main:replay"
+test = "lapses_ai.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
