@@ -1,17 +1,24 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-from langchain_google_genai import ChatGoogleGenerativeAI
+#from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_community.chat_models import ChatLiteLLM
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
 
 ## call the gemini models
-llm=ChatGoogleGenerativeAI(model="gemini-1.5-flash",
-                           verbose=True,
-                           temperature=0.5,
-                           google_api_key=os.getenv("GOOGLE_API_KEY"))
+llm = ChatLiteLLM(
+    model="gemini-pro",
+    google_api_key="",
+    temperature=0.5,
+    verbose=True,
+    litellm_params={"provider": "google"}  # ✅ Only here!
+)
 
 @CrewBase
 class LapsesAi():
